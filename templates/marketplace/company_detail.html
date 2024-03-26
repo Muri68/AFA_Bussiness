@@ -1,0 +1,403 @@
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bootstrap demo</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" integrity="sha384-4LISF5TTJX/fLmGSxO53rV4miRxdg84mZsxmO8Rx5jGtp/LbrixFETvWa5a6sESd" crossorigin="anonymous">
+
+    <style>
+        .accordion-button::after {
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='currentColor' class='bi bi-plus' viewBox='0 0 16 16'%3E%3Cpath d='M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z'/%3E%3C/svg%3E");
+            transition: all 0.5s;
+        }
+        .accordion-button:not(.collapsed)::after {
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='currentColor' class='bi bi-dash' viewBox='0 0 16 16'%3E%3Cpath d='M4 8a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7A.5.5 0 0 1 4 8z'/%3E%3C/svg%3E");
+        }
+
+        .c-img {
+            height: 100%;
+            object-fit: cover;
+            filter: brightness(0.6);
+            }
+    </style>
+</head>
+<body>
+    
+    {% include 'include/navbar.html' %}
+
+    <div id="carouselExampleInterval" class="carousel slide" data-bs-ride="carousel">
+        <ol class="carousel-indicators">
+            <li data-bs-target="#carouselExampleInterval" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></li>
+            <li data-bs-target="#carouselExampleInterval" data-bs-slide-to="1" aria-label="Slide 2"></li>
+            <li data-bs-target="#carouselExampleInterval" data-bs-slide-to="2" aria-label="Slide 3"></li>
+        </ol>
+        <div class="carousel-inner">
+          <div class="carousel-item carousel-item-top active" data-bs-interval="3000">
+            <img src="{% static 'images/banner2.jpg' %}" class="d-block w-100 c-img" alt="...">
+          </div>
+          <div class="carousel-item carousel-item-top" data-bs-interval="3000">
+            <img src="{% static 'images/banner12.jpg' %}" class="d-block w-100 c-img" alt="...">
+          </div>
+          <div class="carousel-item carousel-item-top" data-bs-interval="3000">
+            <img src="{% static 'images/banner.png' %}" class="d-block w-100 c-img" alt="...">
+          </div>
+
+            <div class="carousel-caption">
+                <h5 class="display-4 text-uppercase fw-bold">Lorem ipsum dolor sit amet consectetur. Interdum eleifend.</h5>
+                <p class="mb-4">connecting with your vendors never get any easier than this.</p>
+            </div>
+
+            <div class="main mt-5">
+                <div class="container py-5" style="position: absolute;bottom: 20px;left: 15%;">
+                    <div class="text-danger mb-4 fs-4">
+                        <i class="bi bi-star"></i>
+                        <i class="bi bi-star-fill"></i>
+                        <i class="bi bi-star-fill"></i>
+                        <i class="bi bi-star-fill"></i>
+                        <i class="bi bi-star-fill"></i>
+                    </div>
+                    <strong class="mt-5 text-light">
+                        <span class="text-success fs-5 fw-bold">Open &nbsp;</span> 08:00 am - 11:00pm
+                    </strong>
+                </div>
+            </div>
+
+        </div>
+        
+    </div>
+
+
+    {% include 'include/alerts.html' %}
+    
+
+    <section class="py-3" style="background: #f8efef;">
+        <div class="container">
+            <div class="main-body">
+                <div class="container py-3">
+                    <!-- Example single danger button -->
+                    <div class="btn-group d-inline-flex gap-3">
+                        <a href="{% url 'write-a-review' company.company_slug %}" class="btn btn-danger">
+                            Write a review &nbsp;&nbsp; <i class="bi bi-star"></i>
+                        </a>
+                        <button type="button" class="btn btn-outline-secondary" data-bs-toggle="button" aria-pressed="true">
+                            follow &nbsp;&nbsp; <i class="bi bi-plus"></i>
+                        </button>
+                        <a href="{% url 'contact-vendor' company.company_slug  %}" class="btn  btn-outline-secondary">
+                            contact us &nbsp;&nbsp; <i class="bi bi-compass"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <h2 class="text-uppercase">{{company}}</h2>
+  
+          <div class="row gx-5 gy-3">
+            <!-- Vendors Details -->
+            <div class="col-12 col-xl-8">
+                <div class="mt-5">
+                    <h3 class="text-muted">
+                        <strong>Description</strong>
+                    </h3>
+                    <p class="mt-4 text-muted">
+                        {{ company.company_description }}
+                    </p>
+                </div>
+                <div class="mt-5">
+                    <div class="btn-group d-inline-flex gap-3">
+                        <a href="#" class="btn btn-primary">
+                            <i class="bi bi-facebook"></i> &nbsp;
+                            Facebook
+                        </a>
+                        <a href="#" class="btn  btn-danger">
+                            <i class="bi bi-instagram"></i> &nbsp;
+                            Instagram
+                        </a>
+                        <a href="#" class="btn btn-info">
+                            <i class="bi bi-twitter-x"></i> &nbsp;
+                            Twitter
+                        </a>
+                        <a href="#" class="btn  btn-danger">
+                            <i class="bi bi-youtube"></i> &nbsp;
+                            Youtube
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <!-- END -->
+            <!-- Rating Card -->
+            <div class="col-12 col-xl-4 px-4">
+                <h3 class="text-muted">
+                    <strong>Contact Us</strong>
+                </h3>
+                <div class="mt-3">
+                    <h5 class="text-muted mb-2">Address</h5>
+                    <p class="mt-3">
+                        <i class="fa fa-location-arrow text-danger" aria-hidden="true"></i> &nbsp;&nbsp;&nbsp;
+                        {{ company.address }}
+                    </p>
+                </div>
+                <div class="mt-3">
+                    <h5 class="text-muted mb-2">Phone Number</h5>
+                    <p class="mt-3">
+                        <i class="fa fa-phone text-danger" aria-hidden="true"></i> &nbsp;&nbsp;&nbsp;
+                        {{ company.user.mobile_number }}
+                    </p>
+                </div>
+                <div class="mt-3">
+                    <h5 class="text-muted mb-2">Email Address</h5>
+                    <p class="mt-3">
+                        <i class="fa fa-envelope text-danger" aria-hidden="true"></i> &nbsp;&nbsp;&nbsp;
+                        {{ company.user.email }}
+                    </p>
+                </div>
+            </div>
+            <!-- End -->
+          </div>
+        </div>
+    </section>
+
+    {% comment %} <div class="container p-3">
+        <div class="mt-5">
+            <h3 class="text-muted p-2 text-light bg-danger">
+                <strong class="text-light">Pricing</strong>
+            </h3>
+            <div class="row">
+                <div class="col-12 mb-3">
+                    <div class="card p-3">
+                        <h5 class="text-muted">Kings</h5>
+                        <ul>
+                            <li><b>Price: </b>120,000/Night</li>
+                            <li><b>Room Capacity: </b>4 Persons</li>
+                            <li><b>Number of Beds: </b>2 Beds</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-12 mb-3">
+                    <div class="card p-3">
+                        <h5 class="text-muted">Kings</h5>
+                        <ul>
+                            <li><b>Price: </b>120,000/Night</li>
+                            <li><b>Room Capacity: </b>4 Persons</li>
+                            <li><b>Number of Beds: </b>2 Beds</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div> {% endcomment %}
+
+    <!-- Product Section -->
+    <section class="container mt-5">
+        <h1 class="text-center text-capitalize fw-bold mb-4 text-danger text-wrap" style="max-width: 50%; margin: auto;">
+            {% if vendor.company_type.type == 'Hotel' %}
+            Rooms And Suites
+            {% else %}
+            Products
+            {% endif %}
+            
+        </h1>
+
+        <div class="row gy-4 py-5">
+            {% for food in fooditems %}
+            <div class="col-12 col-lg-3">
+                <div class="card h-100">
+                    <img src="{{food.image.url}}" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">{{food.food_title}}</h5>
+                        <p class="card-text">{{ food.description|truncatewords:15 }}</p>
+                        <a href="#" class="btn mt-auto">See more &nbsp; &nbsp; <i class="bi bi-chevron-right"></i></a>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+
+        {% comment %} {% if fooditems.count 5 %} {% endcomment %}
+        <div class="text-center">
+            <a href="{% url 'company_products' company.company_slug %}" class="btn btn-outline-secondary mt-3">View All</a>
+        </div>
+        {% comment %} {% endif %} {% endcomment %}
+    </section>
+    <!-- Product Section END -->
+
+    <!-- Reviews Section -->
+    <section class="container mt-5">
+        <h1 class="text-center text-capitalize fw-bold mb-4 text-danger text-wrap" style="max-width: 50%; margin: auto;">
+            Customers Reviews
+        </h1>
+
+        <div class="row gy-4 py-5">
+            <div class="col-12">
+                <h2>{{reviews.count}} Comments</h2>
+            </div>
+            {% for review in reviews %}
+            <div class="col-sm-12">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <div class="text-danger mb-2 fs-4">
+                            {% if review.rating == 5 %}
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-fill"></i>
+                            {% elif review.rating == 4 %}
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star"></i>
+                            {% elif review.rating == 3 %}
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star"></i>
+                            <i class="bi bi-star"></i>
+                            {% elif review.rating == 2 %}
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-starl"></i>
+                            <i class="bi bi-star"></i>
+                            <i class="bi bi-star"></i>
+                            {% elif review.rating == 1 %}
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star"></i>
+                            <i class="bi bi-star"></i>
+                            <i class="bi bi-star"></i>
+                            <i class="bi bi-star"></i>
+                            {% endif %}
+                        </div>
+                        <p class="card-text">
+                            "{{ review.review }}"
+                        </p>
+                        <div class="d-flex align-items-center" style="flex-direction: row;">
+                            <img class="avatar rounded-circle" src="{% static "images/User.jpg" %}" style="width: 50px;" />
+                            <h5>{{review.full_name}}</h5>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </section>
+    <!-- Reviews Section END -->
+
+    <!-- Overall Ratings -->
+    <section class="container">
+        <div class="row">
+            <div class="col-12 col-md-6">
+                <div class="p-3">
+                    <h5 class="restaurant-title text-center text-capitalize fs-2">overall ratings</h5>
+                    <div class="text-danger text-center fs-4">
+                        <i class="bi bi-star-fill"></i>
+                        <i class="bi bi-star-fill"></i>
+                        <i class="bi bi-star-fill"></i>
+                        <i class="bi bi-star-fill"></i>
+                        <i class="bi bi-star-fill"></i>
+                    </div>
+                    <small class="mb-4">50 reviews</small>
+                    <div class="mt-4">
+                        <div class="progress mb-3" role="progressbar" aria-label="Success example" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">
+                            <p>5 Stars &nbsp;&nbsp;&nbsp;</p>
+                            <div class="progress-bar bg-success" style="width: 80%"></div>
+                        </div>
+                        <div class="progress mb-3" role="progressbar" aria-label="Info example" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100">
+                            <p>4 Stars &nbsp;&nbsp;&nbsp;</p>
+                            <div class="progress-bar bg-info" style="width: 60%"></div>
+                        </div>
+                        <div class="progress mb-3" role="progressbar" aria-label="Warning example" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100">
+                            <p>3 Stars &nbsp;&nbsp;&nbsp;</p>
+                            <div class="progress-bar bg-warning" style="width: 30%"></div>
+                        </div>
+                        <div class="progress mb-3" role="progressbar" aria-label="Danger example" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">
+                            <p>2 Stars &nbsp;&nbsp;&nbsp;</p>
+                            <div class="progress-bar bg-danger" style="width: 10%"></div>
+                        </div>
+                        <div class="progress mb-3" role="progressbar" aria-label="Danger example" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">
+                            <p>1 Stars &nbsp;&nbsp;&nbsp;</p>
+                            <div class="progress-bar bg-danger" style="width: 95%"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Overall Ratings END -->
+
+
+    <!-- Frequently asked questions -->
+
+    <section class="p-5" id="question">
+        
+        <h1 class="text-center mb-4 text-danger fw-bold">FAQs</h1>
+        {% if vendorQ_A %}
+        <div class="row justify-content-center">
+            <div class="col-12 col-md-4">
+                <p class="leap py-4">
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim 
+                    in eros elementum tristique. 
+                </p>
+            </div>
+        </div>
+        <div class="container py-5">
+            <div class="accordion" id="accordionExample">
+                {% for i in vendorQ_A %}
+                <div class="accordion-item">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapse{{i.id}}"
+                            aria-expanded="true" aria-controls="collapse{{i.id}}">
+                            {{i.title}}
+                        </button>
+                    </h2>
+                    <div id="collapse{{i.id}}" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+                        <div class="accordion-body">
+                            {{i.body}}
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+        <div class="container">
+            <h2 class="mt-4">Still have questions?</h2>
+            <p class="leap mt-3">Support details to capture customers that might be on the fence.</p>
+            <a href="{% url 'contact-vendor' company.company_slug  %}" class="btn btn-outline-secondary mt-3">Contact us</a>
+        </div>
+        {% else %}
+        <p class="leap py-4 text-center">
+            Vendor Has No FQ&A 
+        </p>
+        {% endif %}
+        
+    </section>
+
+    <!-- Frequently asked questions END -->
+
+
+  <!-- Footer  -->
+  {% include 'include/footer.html' %}
+  <!-- Footer END -->
+
+
+  <script>
+      const navEl = document.querySelector('.navbar');
+      const nav_btn = document.querySelector('.nav-item')
+
+      window.addEventListener('scroll', () => {
+          if (window.scrollY >= 56) {
+              navEl.classList.add('navbar-scrolled');
+              nav_btn.classList.add('btn-new');
+          } else if (window.scrollY < 56) {
+              navEl.classList.remove('navbar-scrolled');
+              nav_btn.classList.remove('btn-new');
+          }
+      });
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
+</body>
+</html>

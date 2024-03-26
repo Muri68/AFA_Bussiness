@@ -1,0 +1,91 @@
+{% load static %}
+
+{% url 'vendor-dashboard' as dashboard %}
+{% url 'vprofile' as vprofile %}
+{% url 'v-products' as vproducts %}
+{% url 'reviews' as vreviews %}
+{% url 'add_product' as add_product %}
+
+<header id="header" class="header fixed-top d-flex align-items-center">
+   <div class="d-flex align-items-center justify-content-center"> 
+      <a href="{% url 'vendor-dashboard' %}" class="logo d-flex align-items-center" style="background: #fff;"> 
+         <img src="{% static 'images/new_logo.png' %}" alt=""> 
+         <!-- <span class="d-none d-lg-block">Admin</span> -->
+      </a> 
+      <i class="bi bi-list toggle-sidebar-btn"></i>
+   </div>
+   
+      {% if request.path == dashboard %}
+      <div class="px-4">
+         <h1 class="welcome-text m-0 text-dark display-5 text-capitalize text-bold"><b>Dashboard</b></h1>
+      </div>
+      {% elif request.path == vprofile %}
+      <div class="px-4">
+         <h1 class="welcom-text text-dark display-5 text-capitalize text-bold">
+            <b>{{ vendor.user.company_name }}</b>
+         </h1>
+      </div>
+      {% elif request.path == vproducts or request.path == add_product %}
+      <div class="px-4">
+         {% if vendor.company_type.type == 'Hotel' %}
+            <h1 class="welcome-text m-0 text-dark display-5 text-capitalize text-bold"><b>Rooms and suites</b></h1>
+            <p>Find all the details you need for a great stay at Transcorp Hilton Abuja.</p>
+            {% elif vendor.company_type.type == 'Restaurant' %}
+            <h1 class="welcome-text m-0 text-dark display-5 text-capitalize text-bold"><b>FoodItems</b></h1>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit qui?</p>
+         {% else %}
+            <h1 class="welcome-text m-0 text-dark display-5 text-capitalize text-bold"><b>Products</b></h1>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit qui?</p>
+         {% endif %}
+      </div>
+      {% elif request.path == vreviews %}
+      <div class="px-4">
+         <h1 class="welcome-text m-0 text-dark display-5 text-capitalize text-bold"><b>Reviews</b></h1>
+         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit qui?</p>
+      </div>
+      {% endif %}
+</header>
+
+
+<aside id="sidebar" class="sidebar">
+    <ul class="sidebar-nav w-100 d-flex flex-column align-items-start justify-content-center" id="sidebar-nav" style="height: calc(80vh - 200px);">
+       <li class="nav-item">
+          <a class="nav-link {% if request.path == dashboard %} active {% endif %}" href="{% url 'vendor-dashboard' %}">
+             <i class="bi bi-house-door"></i> 
+             <span>Dashboard</span>
+          </a>
+       </li>
+       <li class="nav-item"> 
+          <a class="nav-link {% if request.path == vproducts or request.path == add_product %} active {% endif %}" href="{% url 'v-products' %}"> 
+             <i class="bi bi-stack"></i>
+             {% if vendor.company_type.type == 'Hotel' %}
+             <span>Rooms and suites</span> 
+             {% elif vendor.company_type.type == 'Restaurant' %}
+             <span>Food Menu</span> 
+             {% else %}
+             <span>Product</span> 
+             {% endif %}
+          </a>
+       </li>
+       <li class="nav-item"> 
+          <a class="nav-link {% if request.path == vreviews %} active {% endif %}" href="{% url 'reviews' %}"> 
+             <i class="bi bi-star"></i> 
+             <span>Reviews</span> 
+          </a>
+       </li>
+    </ul>
+    <ul class="sidebar-nav" id="sidebar-nav">
+       <li class="nav-item mt-auto">
+             <a class="nav-link {% if request.path == vprofile %} active {% endif %} d-flex align-items-center pe-0" href="{% url 'vprofile' %}">
+                <img src="{{vendor.company_logo.url}}" alt="Profile" class="rounded-circle" style="width: 20%;"> 
+                <span class="d-md-block ps-2">{{vendor.user.company_name}}</span> 
+             </a>
+       </li>
+       <li class="nav-item"> 
+          <a class="nav-link collapsed text-danger" href="{% url 'account_logout' %}"> 
+             <i class="bi bi-box-arrow-left text-danger"></i> 
+             <span>Sign Out</span> 
+          </a>
+       </li>
+    </ul>
+</aside>

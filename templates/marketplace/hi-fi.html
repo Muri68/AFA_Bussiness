@@ -1,0 +1,478 @@
+{% load static %}
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bootstrap demo</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"/>
+    {% comment %} <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" integrity="sha384-4LISF5TTJX/fLmGSxO53rV4miRxdg84mZsxmO8Rx5jGtp/LbrixFETvWa5a6sESd" crossorigin="anonymous"> {% endcomment %}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+   
+  </head>
+  <body>
+    <!-- NAVBAR -->
+    {% include 'include/navbar.html' %}
+    <!-- NAVBAR END -->
+
+    <!-- CAROUSEL -->
+    <div id="carouselExampleInterval" class="carousel slide" data-bs-ride="carousel">
+        <ol class="carousel-indicators carousel-indicators-top">
+            <li data-bs-target="#carouselExampleInterval" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></li>
+            <li data-bs-target="#carouselExampleInterval" data-bs-slide-to="1" aria-label="Slide 2"></li>
+            <li data-bs-target="#carouselExampleInterval" data-bs-slide-to="2" aria-label="Slide 3"></li>
+        </ol>
+        <div class="carousel-inner">
+          <div class="carousel-item carousel-item-top active" data-bs-interval="3000">
+            <img src="{% static 'images/banner2.jpg' %}" class="d-block w-100 carousel-img" alt="...">
+          </div>
+          <div class="carousel-item carousel-item-top" data-bs-interval="3000">
+            <img src="{% static "images/banner12.jpg" %}" class="d-block w-100 carousel-img" alt="...">
+          </div>
+          <div class="carousel-item carousel-item-top" data-bs-interval="3000">
+            <img src="{% static "images/banner.png" %}" class="d-block w-100 carousel-img" alt="...">
+          </div>
+
+            <div class="carousel-caption carousel-caption-top">
+                <h5 class="display-1 text-uppercase fw-bold">get the inside scope on products with afa reviews</h5>
+                <p class="mb-4">save time and money by checking reviews on products and services.</p>
+
+                <form action="{% url 'search-result' %}" class="row gy-2 g-0 mt-5">
+                    {% csrf_token %}
+                    <div class="col-12 col-lg-2">
+                      <select name="state">
+                        <option selected>Select Location...</option>
+                        {% for state in states %}
+                        <option value="{{ state }}">{{ state }}</option>
+                        {% endfor %}
+                      </select>
+                    </div>
+                    <div class="col-12 col-lg-2">
+                      <select name="companytype">
+                        <option selected class="text-white">Select Category...</option>
+                        {% for c in c_type %}
+                        <option value="{{ c }}">{{c}}</option>
+                        {% endfor %}
+                      </select>
+                    </div>
+                    <button type="submit" class="col-12 col-lg-2 bg-danger btn btn-danger" style="padding: 8px; border-radius: 0;">Search</button>
+                </form>
+            </div>
+
+        </div>
+        
+    </div>
+    <!-- CAROUSEL END -->
+
+    <!-- HOW IT WORKS SECTION -->
+    <section class="mt-1 py-3 how-to-containe no-padding" style="background: #cd5565;">
+        <div class="row how-its-works-rows">
+            <div class="col-12 col-lg position-relative ps-4 d-none d-lg-block">
+                <div class="position-absolute how-its-works-img">
+                    <img src="{% static 'images/bbbb.png' %}" alt="" class="rounded">
+                </div>
+            </div>
+            <div class="col-12 col-lg position-relative how-its-works-container">
+                <div class="bg-danger w-75 mx-auto position-absolute how-its-works rounded py-5">
+                    <h1 class="display-4 text-center text-white pb-5 text-uppercase fw-bold">
+                        how it works
+                    </h1>
+                    <ol class="list-group list-group-numbered border-0 text-white w-75 mx-auto">
+                    <li class="list-group-item text-white text-capitalize bg-transparent border-0 d-flex justify-content-between align-items-start">
+                        <div class="ms-2 me-auto">
+                        <div class="fs-4 text-start">&nbsp;&nbsp;&nbsp; access the page and search for your 
+                            favourite product or services</div>
+                        </div>
+                    </li>
+                    <li class="list-group-item text-white text-capitalize bg-transparent border-0 d-flex justify-content-between align-items-start">
+                        <div class="ms-2 me-auto">
+                        <div class="fs-4 text-start">&nbsp;&nbsp;&nbsp; 
+                            read reviews about products and services
+                        </div>
+                        </div>
+                    </li>
+                    <li class="list-group-item text-white text-capitalize bg-transparent border-0 d-flex justify-content-between align-items-start">
+                        <div class="ms-2 me-auto">
+                        <div class="fs-4 text-start">&nbsp;&nbsp;&nbsp;
+                            write reviews and rate product or service based on  experience 
+                        </div>
+                        </div>
+                    </li>
+                    </ol>
+                    <div style=" transform: rotate(-15deg)">
+                    <img src="{% static 'images/hhhhh.png' %}" alt="" class="w-75">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- HOW IT WORKS SECTION END -->
+
+    <!-- Destination Start -->
+    <div class="container-xxl mt-5 py-5 destination">
+        <div class="container">
+            <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
+                <h1 class="section-title fw-bold display-4 text-uppercase text-center text-danger px-3 mb-5">recently most visited </h1>
+            </div>
+            <div class="row g-3">
+                <div class="col-lg-7 col-md-6">
+                    <div class="row g-3">
+                        <div class="col-lg-12 col-md-12 wow zoomIn" data-wow-delay="0.1s">
+                            <div class="thumbnail text-center t position-relative ">
+                                <a class="d-block overflow-hidden" href="">
+                                    <img class="img-fluid recent-img" src="{% static 'images/destination-1.jpg' %}" alt="">
+                                </a>
+                                <div class="img-caption">
+                                    <h2 class="text-white text-uppercase">hotel deluna </h2>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-12 wow zoomIn" data-wow-delay="0.3s">
+                            <div class="thumbnail text-center t position-relative ">
+                                <a class="position-relative d-block overflow-hidden" href="">
+                                    <img class="img-fluid recent-img" src="{% static 'images/destination-2.jpg' %}" alt="">
+                                </a>
+                                <div class="img-caption">
+                                    <h2 class="text-white text-uppercase">yarsala restaurant </h2>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-12 wow zoomIn" data-wow-delay="0.5s">
+                            <div class="thumbnail text-center t position-relative ">
+                                <a class="position-relative d-block overflow-hidden" href="">
+                                    <img class="img-fluid recent-img" src="{% static 'images/destination-3.jpg' %}" alt="">
+                                </a>
+                                <div class="img-caption">
+                                    <h2 class="text-white text-uppercase">amg.co 
+                                        real estate
+                                        management</h2>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-5 col-md-6 wow zoomIn" data-wow-delay="0.7s" style="min-height: 350px;">
+                    <div class="thumbnail text-center position-relative">
+                        <a class="d-block h-100 overflow-hidden" href="">
+                            <img class="img-fluid recent-img w-100 h-100" src="{% static 'images/destination-4.jpg' %}" alt="" style="object-fit: cover;">
+                        </a>
+                        <div class="img-caption">
+                            <h2 class="text-white text-uppercase">nucy’s gallery</h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Destination Start -->
+
+    <!-- CATEGORIES Start -->
+    <section class="p-5" id="restaurants">
+        <div class="container px-4">
+            <h1 class="fw-bold text-capitalize mb-5 text-center text-uppercase text-danger">explore our categories </h1>
+            <div class="row g-4">
+                <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.1s">
+                    <div class="category-item rounded pt-3">
+                        <div class="p-4 d-flex justify-content-evenly ex-cat">
+                            <i class="fa fa-2x fa-car"></i>
+                            <h5>Automotive</h5>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.3s">
+                    <div class="category-item rounded pt-3">
+                        <div class="p-4 d-flex ex-cat">
+                            <i class="fa fa-2x fa-handshake"></i>
+                            <h5>Business Support</h5>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.5s">
+                    <div class="category-item rounded pt-3" style="border: 1px solid;">
+                        <div class="p-4 d-flex ex-cat">
+                            <i class="fa fa-2x fa-laptop"></i>
+                            <h5>Computer/Electronics</h5>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.7s">
+                    <div class="category-item rounded pt-3">
+                        <div class="p-4 d-flex ex-cat">
+                            <i class="fa fa-2x fa-graduation-cap"></i>
+                            <h5>Education</h5>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.1s">
+                    <div class="category-item rounded pt-3">
+                        <div class="p-4 d-flex ex-cat">
+                            <i class="fa fa-2x fa-leaf"></i>
+                            <h5>Food/Dining</h5>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.3s">
+                    <div class="category-item rounded pt-3">
+                        <div class="p-4 d-flex ex-cat">
+                            <i class="fa fa-2x fa-hotel"></i>
+                            <h5>Fashion</h5>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.5s">
+                    <div class="category-item rounded pt-3">
+                        <div class="p-4 d-flex ex-cat">
+                            <i class="fa fa-2x fa-user"></i>
+                            <h5>Health</h5>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.7s">
+                    <div class="category-item rounded pt-3">
+                        <div class="p-4 d-flex ex-cat">
+                            <i class="fa fa-2x fa-cog"></i>
+                            <h5>Legal Services</h5>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.7s">
+                    <div class="category-item rounded pt-3">
+                        <div class="p-4 d-flex ex-cat">
+                            <i class="fa fa-2x fa-home"></i>
+                            <h5>Real Estate</h5>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.7s">
+                    <div class="category-item rounded pt-3">
+                        <div class="p-4 d-flex ex-cat">
+                            <i class="fa fa-2x fa-plane"></i>
+                            <h5>Traveling</h5>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- CATEGORIES End -->
+
+    <!-- Customers Review Start -->
+    <div class="container-xxl py-5">
+        <div class="container">
+            <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
+                <h1 class="section-title bg-white text-center text-danger px-3">most recent reviews</h1>
+                <p class="mb-5">read differect reviews from our customers</p>
+            </div>
+            <div class="row g-4">
+                <div class="col-lg-4 col-sm-6 wow fadeInUp" data-wow-delay="0.1s">
+                    <div class="reviews-item rounded pt-3" style="border: 1px solid;">
+                        <div class="p-4">
+                            <div class="mb-3">
+                                <span class = "fa fa-star checked"></span>  
+                                <span class = "fa fa-star checked"></span>  
+                                <span class = "fa fa-star checked"></span>  
+                                <span class = "fa fa-star checked"></span> 
+                                <span class = "fa fa-star checked"></span>  
+                            </div>
+                            <p>"The service provided is incredible, the insights and knowledge that the team has let us increase the sales."</p>
+                            <div class="font-weight-bold text-dark">
+                                <img style="width:20%;" src="{% static 'images/team-2.jpg' %}" alt="image" class="img-fluid avatar-sm rounded-circle">
+                                <span style="margin-left: 20px;">Wade Warren</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-sm-6 wow fadeInUp" data-wow-delay="0.1s">
+                    <div class="reviews-item rounded pt-3" style="border: 1px solid;">
+                        <div class="p-4">
+                            <div class="mb-3">
+                                <span class = "fa fa-star checked"></span>  
+                                <span class = "fa fa-star checked"></span>  
+                                <span class = "fa fa-star checked"></span>  
+                                <span class = "fa fa-star unchecked"></span>
+                                <span class = "fa fa-star unchecked"></span>  
+                            </div>
+                            <p>"Very inspiring working experience with their representatives, responsible and active in communication during project, provide timely response in all feedback, with high quality delivery of final work."</p>
+                            <div class="font-weight-bold text-dark">
+                                <img style="width:20%;" src="../NEW/assets/img/about.jpg" alt="image" class="img-fluid avatar-sm rounded-circle">
+                                <span style="margin-left: 20px;">Jane Cooper</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-sm-6 wow fadeInUp" data-wow-delay="0.1s">
+                    <div class="reviews-item rounded pt-3">
+                        <div class="p-4">
+                            <div class="mb-3">
+                                <span class = "fa fa-star checked"></span>  
+                                <span class = "fa fa-star checked"></span>  
+                                <span class = "fa fa-star checked"></span>  
+                                <span class = "fa fa-star checked"></span>
+                                <span class = "fa fa-star checked"></span>  
+                            </div>
+                            <p>"The partner been progressing well with the business change environment, talents of new skill set might be an importance area to look into it plus agile process for both to excel in future."</p>
+                            <div class="font-weight-bold text-dark">
+                                <img style="width:20%;" src="../NEW/assets/img/about.jpg" alt="image" class="img-fluid avatar-sm rounded-circle">
+                                <span style="margin-left: 20px;">Kathryn Murphy</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-sm-6 wow fadeInUp" data-wow-delay="0.1s">
+                    <div class="reviews-item rounded pt-3">
+                        <div class="p-4">
+                            <div class="mb-3">
+                                <span class = "fa fa-star checked"></span>  
+                                <span class = "fa fa-star checked"></span>  
+                                <span class = "fa fa-star checked"></span>  
+                                <span class = "fa fa-star checked"></span>
+                                <span class = "fa fa-star checked"></span>  
+                            </div>
+                            <p>"Incredible group of people and talented professionals. Focused on the development
+                                 of flexible and integrated strategies for the business, 100% results oriented."</p>
+                            <div class="font-weight-bold text-dark">
+                                <img style="width:20%;" src="../NEW/assets/img/about.jpg" alt="image" class="img-fluid avatar-sm rounded-circle">
+                                <span style="margin-left: 20px;">Theresa Webb</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-sm-6 wow fadeInUp" data-wow-delay="0.1s">
+                    <div class="reviews-item rounded pt-3">
+                        <div class="p-4">
+                            <div class="mb-3">
+                                <span class = "fa fa-star checked"></span>  
+                                <span class = "fa fa-star checked"></span>  
+                                <span class = "fa fa-star checked"></span>  
+                                <span class = "fa fa-star checked"></span>
+                                <span class = "fa fa-star checked"></span>  
+                            </div>
+                            <p>"Creative, innovative and strategic. We have great achievements made together and looking to enhance the way of doing business."</p>
+                            <div class="font-weight-bold text-dark">
+                                <img style="width:20%;" src="../NEW/assets/img/about.jpg" alt="image" class="img-fluid avatar-sm rounded-circle">
+                                <span style="margin-left: 20px;">Floyd Miles</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-sm-6 wow fadeInUp" data-wow-delay="0.1s">
+                    <div class="reviews-item rounded pt-3">
+                        <div class="p-4">
+                            <div class="mb-3">
+                                <span class = "fa fa-star checked"></span>  
+                                <span class = "fa fa-star checked"></span>  
+                                <span class = "fa fa-star checked"></span>  
+                                <span class = "fa fa-star checked"></span>
+                                <span class = "fa fa-star checked"></span>  
+                            </div>
+                            <p>"The partner been progressing well with the business change environment, talents of new skill set might be an importance area to look into it plus agile process for both to excel in future."</p>
+                            <div class="font-weight-bold text-dark">
+                                <img style="width:20%;" src="../NEW/assets/img/about.jpg" alt="image" class="img-fluid avatar-sm rounded-circle">
+                                <span style="margin-left: 20px;">Ralph Edwards</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Customers Review End -->
+
+    <div class="testimonial_aria">
+        <div class="row">
+            <div class="col-12 d-flex align-items-center justify-content-center flex-column">
+                <h1 class="fw-bold pt-5 text-capitalize text-center text-uppercase text-danger">what people are saying </h1>
+            </div>
+        </div>
+        <div class="container">
+            <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
+                <ol class="carousel-indicators testimonial-indicators">
+                  <li data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></li>
+                  <li data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></li>
+                  <li data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></li>
+                </ol>
+                <div class="carousel-inner">
+                  <div class="carousel-item testimonial-item active">
+                    <div class="carousel-image">
+                        <img src="{% static 'images/testimonial-2.jpg' %}" class="d-block w-100" alt="...">
+                    </div>
+                    <div class="carousel-caption testimonial-caption">
+                      <h5 class="testimonial-name">Annette Black</h5>
+                      <p>Lorem ipsum dolor sit amet consectetur. Gravida tincidunt id viverra egestas commodo netus mattis aliquam. Consequat purus adipiscing interdum imperdiet ut est potenti fermentum. </p>
+                    </div>
+                  </div>
+                  <div class="carousel-item testimonial-item">
+                    <div class="carousel-image">
+                        <img src="{% static 'images/testimonial-1.jpg' %}" class="d-block w-100" alt="...">
+                    </div>
+                    <div class="carousel-caption testimonial-caption">
+                      <h5 class="testimonial-name">Isyaku Murtala</h5>
+                      <p>Lorem ipsum dolor sit amet consectetur. Gravida tincidunt id viverra egestas commodo netus mattis aliquam. Consequat purus adipiscing interdum imperdiet ut est potenti fermentum. </p>
+                    </div>
+                  </div>
+                  <div class="carousel-item testimonial-item">
+                    <div class="carousel-image">
+                        <img src="{% static 'images/testimonial-3.jpg' %}" class="d-block w-100" alt="...">
+                    </div>
+                    <div class="carousel-caption testimonial-caption">
+                      <h5 class="testimonial-name">Joseph Holes</h5>
+                      <p>Lorem ipsum dolor sit amet consectetur. Gravida tincidunt id viverra egestas commodo netus mattis aliquam. Consequat purus adipiscing interdum imperdiet ut est potenti fermentum. </p>
+                    </div>
+                  </div>
+                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+                  <span class="carousel-control-prev-icon testimonial-prev-icon" aria-hidden="true"></span>
+                  <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+                  <span class="carousel-control-next-icon testimonial-next-icon" aria-hidden="true"></span>
+                  <span class="visually-hidden">Next</span>
+                </button>
+              </div>
+        </div>
+    </div>
+
+    <section class="newslatter-section position-relative">
+        <img class="newsletter-img" src="{% static "images/banner12.jpg" %}" alt="Photo">
+        <div class="container py-5 justify-content-middle px-4">
+            <h1 class="fw-bold display-4 mt-5 text-capitalize mb-5 text-center text-uppercase text-light">subscribe to our weekly update </h1>
+            <div class="col-md-6 offset-md-3">
+                <p class="text-center fs-5 text-light">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique.</p>
+                <div class="row gy-3">
+                    <div class="col-12 col-lg-8">
+                        <input type="text" class="form-control-lg w-100" placeholder="Enter your email">
+                        <p class="text-light">By subscribing you agree to with our <a href="#">Privacy Policy</a></p>
+                    </div>
+
+                    <div class="col-12 col-lg-4">
+                        <button class="btn btn-danger w-100 btn-lg">Subscribe</button></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Footer  -->
+    {% include 'include/footer.html' %}>
+    <!-- Footer END -->
+
+
+    <script>
+        const navEl = document.querySelector('.navbar');
+        const nav_btn = document.querySelector('.nav-item')
+
+        window.addEventListener('scroll', () => {
+            if (window.scrollY >= 56) {
+                navEl.classList.add('navbar-scrolled');
+                nav_btn.classList.add('btn-new');
+            } else if (window.scrollY < 56) {
+                navEl.classList.remove('navbar-scrolled');
+                nav_btn.classList.remove('btn-new');
+            }
+        });
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
+  </body>
+</html>

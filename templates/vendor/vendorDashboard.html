@@ -1,0 +1,306 @@
+{% load static %}
+<html lang="en">
+
+<head>
+   <meta charset="utf-8">
+   <meta content="width=device-width, initial-scale=1.0" name="viewport">
+   <title>Dashboard - Admin Bootstrap Template</title>
+   <meta name="robots" content="noindex, nofollow">
+   <meta content="" name="description">
+   <meta content="" name="keywords">
+   <link href="{% static 'images/favicon.png' %}" rel="icon">
+   <link href="{% static 'images/apple-touch-icon.png' %}" rel="apple-touch-icon">
+   <link href="https://fonts.gstatic.com" rel="preconnect">
+   <link
+      href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"
+      rel="stylesheet">
+   <link href="{% static 'css/dashboard_css/bootstrap.min.css' %}" rel="stylesheet">
+   <link href="{% static 'css/dashboard_css/bootstrap-icons.css' %}" rel="stylesheet">
+   <link href="{% static 'css/dashboard_css/boxicons.min.css' %}" rel="stylesheet">
+   <link href="{% static 'css/dashboard_css/quill.snow.css' %}" rel="stylesheet">
+   <link href="{% static 'css/dashboard_css/quill.bubble.css' %}" rel="stylesheet">
+   <link href="{% static 'css/dashboard_css/remixicon.css' %}" rel="stylesheet">
+   <link href="{% static 'css/dashboard_css/simple-datatables.css' %}" rel="stylesheet">
+   <link href="{% static 'css/dashboard_css/style.css' %}" rel="stylesheet">
+
+   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+</head>
+
+<body>
+   
+   {% include 'include/side-nav.html' %}
+
+   {% include 'include/alerts.html' %}
+
+   <main id="main" class="main">
+      <div class="pagetitle">
+         <h1 class="card-title"><b>Welcome</b> {{ vendor.user.company_name }}</h1>
+         <h1>Dashboard</h1>
+         <nav>
+            <ol class="breadcrumb">
+               <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+               <li class="breadcrumb-item active">Dashboard</li>
+            </ol>
+         </nav>
+      </div>
+      <section class="section dashboard">
+         <div class="row">
+            <div class="col-lg">
+               <div class="row">
+                  <div class="col-xxl-4 col-md-6">
+                     <div class="card info-card sales-card p-2">
+                        <div class="card-body">
+                           <h5 class="card-title text-center text-capitalize">
+                              {% if vendor.company_type.type == 'Hotel' %}
+                              Rooms & Suites
+                              {% elif vendor.company_type.type == 'Restaurant' %}
+                              Food Items
+                              {% else %}
+                              Products
+                              {% endif %}
+                           </h5>
+                           <div class="align-items-center">
+                              <div class="ps-3 mt-3">
+                                 <h6 class="text-center">{{fooditems.count}}</h6>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+                  <div class="col-xxl-4 col-md-6">
+                     <div class="card info-card sales-card p-2">
+                        <div class="card-body">
+                           <h5 class="card-title text-center text-capitalize">new customers</h5>
+                           <div class="align-items-center">
+                              <div class="ps-3 mt-3">
+                                 <h6 class="text-center">0</h6>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+                  <div class="col-xxl-4 col-md-6">
+                     <div class="card info-card sales-card p-2">
+                        <div class="card-body">
+                           <h5 class="card-title text-center text-capitalize">latest reviews</h5>
+                           <div class="align-items-center">
+                              <div class="ps-3 mt-3">
+                                 <h6 class="text-center">{{reviews.count}}</h6>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </section>
+
+      <section class="section dashboard">
+         <div class="row">
+            <div class="col-lg-8">
+               <div class="row">
+                  <div class="col-12">
+                     <div class="card">
+                        <div class="card-body">
+                           <h5 class="card-title">sales activity</h5>
+                           <div id="reportsChart"></div>
+                           <script>document.addEventListener("DOMContentLoaded", () => {
+                                 new ApexCharts(document.querySelector("#reportsChart"), {
+                                    series: [{
+                                       name: 'Sales',
+                                       data: [31, 40, 28, 51, 42, 82, 56],
+                                    }, {
+                                       name: 'Revenue',
+                                       data: [11, 32, 45, 32, 34, 52, 41]
+                                    }, {
+                                       name: 'Customers',
+                                       data: [15, 11, 32, 18, 9, 24, 11]
+                                    }],
+                                    chart: {
+                                       height: 350,
+                                       type: 'area',
+                                       toolbar: {
+                                          show: false
+                                       },
+                                    },
+                                    markers: {
+                                       size: 4
+                                    },
+                                    colors: ['#4154f1', '#2eca6a', '#ff771d'],
+                                    fill: {
+                                       type: "gradient",
+                                       gradient: {
+                                          shadeIntensity: 1,
+                                          opacityFrom: 0.3,
+                                          opacityTo: 0.4,
+                                          stops: [0, 90, 100]
+                                       }
+                                    },
+                                    dataLabels: {
+                                       enabled: false
+                                    },
+                                    stroke: {
+                                       curve: 'smooth',
+                                       width: 2
+                                    },
+                                    xaxis: {
+                                       type: 'datetime',
+                                       categories: ["2018-09-19T00:00:00.000Z", "2018-09-19T01:30:00.000Z", "2018-09-19T02:30:00.000Z", "2018-09-19T03:30:00.000Z", "2018-09-19T04:30:00.000Z", "2018-09-19T05:30:00.000Z", "2018-09-19T06:30:00.000Z"]
+                                    },
+                                    tooltip: {
+                                       x: {
+                                          format: 'dd/MM/yy HH:mm'
+                                       },
+                                    }
+                                 }).render();
+                              });
+                           </script>
+                        </div>
+                     </div>
+                  </div>
+                  <div class="col-12">
+                     <div class="card recent-sales overflow-auto">
+                        <div class="card-body">
+                           <h5 class="card-title">Recent Messages</h5>
+                           <table class="table table-borderless datatable">
+                              <thead>
+                                 <tr>
+                                    <th scope="col">#</th>
+                                    <th scope="col">Customer Name</th>
+                                    <th scope="col">Message</th>
+                                    <th scope="col">Status</th>
+                                 </tr>
+                              </thead>
+                              <tbody>
+                                 {% for message in v_messages %}
+                                 <tr>
+                                    <th scope="row"><a href="#">{{forloop.counter}}</a></th>
+                                    <td>{{message.full_name}}</td>
+                                    <td><a href="#" class="text-primary">{{message.message}}</a></td>
+                                    {% if message.replied == True %}
+                                    <td><span class="badge bg-success">Replied</span></td>
+                                    {% elif message.replied == False %}
+                                    <td><span class="badge bg-danger">Not Replied</span></td>
+                                    {% endif %}
+                                 </tr>
+                                 {% endfor %}
+                              </tbody>
+                           </table>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+            <div class="col-lg-4">
+               <div class="card">
+                  <div class="card-body pb-5">
+                     <div style="width: 60%; margin: auto;">
+                        <div class="rating-card d-flex flex-column align-items-center justify-content-center shadow-sm p-3 mb-5 bg-white rounded">
+                           <h5 class="card-title text-center">Overall Ratings</h5>
+                           <div class="rating text-center ">
+                              <i class="bi bi-star-fill"></i>
+                              <i class="bi bi-star-fill"></i>
+                              <i class="bi bi-star-fill"></i>
+                              <i class="bi bi-star-fill"></i>
+                              <i class="bi bi-star-fill"></i>
+                           </div>
+                           <span>50 Reviews</span>
+                        </div>
+                     </div>
+                     <div class="ps-5 pe-5">
+                        <div class="progress">
+                           <span class="bg-light ml-3"><b>5 Stars</b> &nbsp;&nbsp;</span>
+                           <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" style="width: 10%" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100"></div>
+                        </div>
+                        <div class="progress mt-3">
+                           <span class="bg-light ml-3"><b>4 Stars</b> &nbsp;&nbsp;</span>
+                           <div class="progress-bar progress-bar-striped bg-success progress-bar-animated" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                        </div>
+                        <div class="progress mt-3">
+                           <span class="bg-light ml-3"><b>3 Stars</b> &nbsp;&nbsp;</span>
+                           <div class="progress-bar progress-bar-striped bg-info progress-bar-animated" role="progressbar" style="width: 50%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+                        </div>
+                        <div class="progress mt-3">
+                           <span class="bg-light ml-3"><b>2 Stars</b> &nbsp;&nbsp;</span>
+                           <div class="progress-bar progress-bar-striped bg-warning progress-bar-animated" role="progressbar" style="width: 75%" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
+                        </div>
+                        <div class="progress mt-3">
+                           <span class="bg-light ml-3"><b>1 Stars</b> &nbsp;&nbsp;</span>
+                           <div class="progress-bar progress-bar-striped bg-danger progress-bar-animated" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+               <div class="card">
+                  <div class="card-body pb-0">
+                     <h5 class="card-title">Recent Reviews</h5>
+                     <div class="news">
+                        {% for review in reviews %}
+                        <div class="post-item clearfix">
+                           <img src="{% static "images/User.jpg" %}" alt="">
+                           <h4><a href="#">{{review.full_name}}</a></h4>
+                           <h4 class="text-danger">
+                           {% if review.rating == 5 %}
+                              <i class="bi bi-star-fill"></i>
+                              <i class="bi bi-star-fill"></i>
+                              <i class="bi bi-star-fill"></i>
+                              <i class="bi bi-star-fill"></i>
+                              <i class="bi bi-star-fill"></i>
+                              {% elif review.rating == 4 %}
+                                 <i class="bi bi-star-fill"></i>
+                                 <i class="bi bi-star-fill"></i>
+                                 <i class="bi bi-star-fill"></i>
+                                 <i class="bi bi-star-fill"></i>
+                                 <i class="bi bi-star"></i>
+                              {% elif review.rating == 3 %}
+                                 <i class="bi bi-star-fill"></i>
+                                 <i class="bi bi-star-fill"></i>
+                                 <i class="bi bi-star-fill"></i>
+                                 <i class="bi bi-star"></i>
+                                 <i class="bi bi-star"></i>
+                              {% elif review.rating == 2 %}
+                                 <i class="bi bi-star-fill"></i>
+                                 <i class="bi bi-star-fill"></i>
+                                 <i class="bi bi-star"></i>
+                                 <i class="bi bi-star"></i>
+                                 <i class="bi bi-star"></i>
+                              {% elif review.rating == 1 %}
+                                 <i class="bi bi-star-fill"></i>
+                                 <i class="bi bi-star"></i>
+                                 <i class="bi bi-star"></i>
+                                 <i class="bi bi-star"></i>
+                                 <i class="bi bi-star"></i>
+                           {% endif %}
+                           </h4>
+                           <p>{{review.review|truncatewords:20}}</p>
+                        </div>
+                        {% endfor %}
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </section>
+   </main>
+   <footer id="footer" class="footer">
+      <div class="copyright"> &copy; Copyright <strong><span>AFA</span></strong>. All Rights Reserved</div>
+   </footer>
+   <a href="#" class="back-to-top d-flex align-items-center justify-content-center">
+      <i class="bi bi-arrow-up-short"></i>
+   </a>
+
+
+   <script src="{% static 'js/dashboard_js/apexcharts.min.js' %}"></script>
+   <script src="{% static 'js/dashboard_js/bootstrap.bundle.min.js' %}"></script>
+   <script src="{% static 'js/dashboard_js/chart.min.js' %}"></script>
+   <script src="{% static 'js/dashboard_js/echarts.min.js' %}"></script>
+   <script src="{% static 'js/dashboard_js/quill.min.js' %}"></script>
+   <script src="{% static 'js/dashboard_js/simple-datatables.js' %}"></script>
+   <script src="{% static 'js/dashboard_js/tinymce.min.js' %}"></script>
+   <script src="{% static 'js/dashboard_js/validate.js' %}"></script>
+   <script src="{% static 'js/dashboard_js/main.js' %}"></script>
+
+</body>
+
+</html>

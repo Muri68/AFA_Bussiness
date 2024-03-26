@@ -1,0 +1,331 @@
+{% load static %}
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{{title}}</title>
+    <link href="{% static 'images/favicon.png' %}" rel="icon">
+    <!-- <link rel="stylesheet" href="bootstrap5.css"> -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.2/css/fontawesome.min.css" integrity="sha384-BY+fdrpOd3gfeRvTSMT+VUZmA728cfF9Z2G42xpaRkUGu2i3DyzpTURDo5A6CaLK" crossorigin="anonymous"> -->
+  </head>
+  <body>
+    <img class="bg-img" src="{% static 'images/banner12.jpg' %}" alt="Photo">
+
+    {% include 'include/navbar.html' %}
+    <br><br><br>
+
+    {% include 'include/messages.html' %}
+
+    <!-- HOME -->
+    <div class="main">
+      <div class="container py-5 mt-5 text-light justify-content-center">
+          <div class="row">
+              <div class="col-sm-12 col-md-5">
+                  <div class="d-sm-flex align-items-center justify-content-between py-5">
+                      <div>
+                          <h1 class="text-light text-capitalize fw-bold display-4">the best platform for your business and services</h1>
+                          <p class="lead my-4 my-4">
+                              AFA provide you with the best business platform where you showcase your product and services and relate with your customers
+                          </p>
+                          <a href="{% url 'index2' %}" style="border: 1px solid #fff;" class="btn py-2 btn-danger w-100 text-center">
+                            Get started
+                          </a>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+    </div>
+  <!-- HOME END -->
+
+    <!-- How it works Section -->
+    <section class="mt-5 py-5 px-3 no-padding" id="services">
+      <div class="container-fluid py-5">
+          <h1 class="text-center text-danger p-5">
+              How it works 
+          </h1>
+          <div class="row text-center g-4">
+              <div class="col-md">
+                  <div class="card text-dark border-0">
+                      <div class="card-body text-center">
+                          <div class="h1 mb-3">
+                            <i class="fa fa-laptop fa-fw fa-2x" aria-hidden="true"></i>
+                            <!-- <i class="bi bi-laptop"></i> -->
+                          </div>
+                          <h3 class="card-title m-3">
+                              Browse through the site
+                          </h3>
+                          <p class="card-text">
+                              at our customer feedback base website, we believe that every business deserves to hear from their customers
+                          </p>
+                      </div>
+                  </div>
+              </div>
+              <div class="col-md">
+                  <div class="card text-dark border-0">
+                      <div class="card-body text-center">
+                          <div class="h1 mb-3">
+                            <i class="fa fa-user fa-fw fa-2x" aria-hidden="true"></i>
+                              <!-- <i class="bi bi-person"></i> -->
+                          </div>
+                          <h3 class="card-title m-3">
+                              Create your business account
+                          </h3>
+                          <p class="card-text">
+                              at our customer feedback base website, we believe that every business deserves to hear from their customers
+                          </p>
+                      </div>
+                  </div>
+              </div>
+              <div class="col-md">
+                  <div class="card text-dark border-0">
+                      <div class="card-body text-center">
+                          <div class="h1 mb-3">
+                            <i class="fa fa-upload fa-fw fa-2x" aria-hidden="true"></i>
+                              <!-- <i class="bi bi-download"></i> -->
+                          </div>
+                          <h3 class="card-title m-3">
+                              Start providing your services 
+                          </h3>
+                          <p class="card-text">
+                              at our customer feedback base website, we believe that every business deserves to hear from their customers
+                          </p>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+    </section>
+  <!-- How it works Section END -->
+
+    <!-- AFA & BIG Image -->
+    <section class="container">
+      <h1 class="text-center display-3 text-capitalize fw-bold">
+          AFA for Business has resources to help you boast , manage and advertise your small business
+      </h1>
+      <p class="mt-5 text-center text-muted">
+          Having a strong presence on AFA helps you establish trust with potential customers.
+      </p>
+    </section>
+
+    <section class="container mt-5 no-padding">
+        <div class="row">
+            <div class="col-md-12">
+              <img src="{% static 'images/banner.png' %}" alt="placeholder 960" class="img-fluid w-100" />
+            </div>
+        </div>
+    </section>
+  <!-- AFA & BIG Image END -->
+
+    <section class="container no-padding mt-5 py-5 mb-5">
+      <div class="row gx-5">
+          <div class="card col-12 col-lg-4 bg-danger position-relative overflow-hidden" style="border: none;">
+              <div class="position-absolute bg-danger" style="top: 40px; left: 40px;">
+                  <img src="{% static 'images/team-2.jpg' %}" alt="Img 007" class="object-fit-cover" />
+              </div>
+          </div>
+          <div class="card col-12 col-lg-8 align-middle text-center py-5" style="border: none;">
+            <h1 class="display-4 text-center text-danger text-capitalize fw-bold">ready to get started? you are just a step away</h1>
+            <p class="text-muted py-3">
+              Ready to take your business to the next level? register and unlock the power of insights as 
+              we offer customization experience for collecting your customers feedback. 
+            </p>
+            <div class="text-center bg-dark mx-auto w-20">
+              <a href="{% url 'index2' %}" class="btn btn-danger mt-3" style="border-radius: 0;">Get started</a>
+            </div>
+          </div>
+      </div>
+    </section>
+
+    <!-- Frequently asked questions -->
+    <section class="py-5 no-padding text-center" id="question">
+            
+        <h1 class="text-center mb-4 text-danger display-4 fw-bold text-capitalize">Frequently asked questions</h1>
+        <div class="row text-center">
+            <div class="col-12 px-5 col-lg-6 mx-auto">
+                <p class="text-center leap align-items-center py-4" >
+                    Frequently asked questions ordered by popularity. Remember that if the visitor has not committed to the call 
+                    to action, they may still have questions (doubts) that can be answered.
+                </p>
+            </div>
+        </div>
+        <div class="container-sm py-5" style="max-width: 840px;">
+            <div class="accordion accordion-flush" id="accordionFlushExample">
+                <div class="accordion-item">
+                <h2 class="accordion-header">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
+                        Question text goes here #1
+                    </button>
+                </h2>
+                <div id="flush-collapseOne" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
+                    <div class="accordion-body">Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui odit necessitatibus ullam sit 
+                        nesciunt! Vitae tempora natus, fugit ex hic adipisci, doloribus quibusdam perferendis fugiat quam quaerat assumenda, 
+                        corporis non dolore? Nemo doloremque soluta, odit esse aliquam laborum quae accusamus.</div>
+                </div>
+                </div>
+                <div class="accordion-item">
+                <h2 class="accordion-header">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo">
+                        Question text goes here #2
+                    </button>
+                </h2>
+                <div id="flush-collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
+                    <div class="accordion-body">Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui odit necessitatibus ullam sit 
+                        nesciunt! Vitae tempora natus, fugit ex hic adipisci, doloribus quibusdam perferendis fugiat quam quaerat assumenda, 
+                        corporis non dolore? Nemo doloremque soluta, odit esse aliquam laborum quae accusamus.</div>
+                </div>
+                </div>
+                <div class="accordion-item">
+                <h2 class="accordion-header">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseThree" aria-expanded="false" aria-controls="flush-collapseThree">
+                        Question text goes here #3
+                    </button>
+                </h2>
+                <div id="flush-collapseThree" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
+                    <div class="accordion-body">Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui odit necessitatibus ullam sit 
+                        nesciunt! Vitae tempora natus, fugit ex hic adipisci, doloribus quibusdam perferendis fugiat quam quaerat assumenda, 
+                        corporis non dolore? Nemo doloremque soluta, odit esse aliquam laborum quae accusamus.</div>
+                </div>
+                </div>
+                <div class="accordion-item">
+                <h2 class="accordion-header">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseFour" aria-expanded="false" aria-controls="flush-collapseThree">
+                        Question text goes here #4
+                    </button>
+                </h2>
+                <div id="flush-collapseFour" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
+                    <div class="accordion-body">Placeholder content for this accordion, which is intended to demonstrate the <code>.accordion-flush</code> class. This is the third item's accordion body. Nothing more exciting happening here in terms of content, but just filling up the space to make it look, at least at first glance, a bit more representative of how this would look in a real-world application.</div>
+                </div>
+                </div>
+                <div class="accordion-item">
+                <h2 class="accordion-header">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseFive" aria-expanded="false" aria-controls="flush-collapseThree">
+                        Question text goes here #5
+                    </button>
+                </h2>
+                <div id="flush-collapseFive" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
+                    <div class="accordion-body">Placeholder content for this accordion, which is intended to demonstrate the <code>.accordion-flush</code> class. This is the third item's accordion body. Nothing more exciting happening here in terms of content, but just filling up the space to make it look, at least at first glance, a bit more representative of how this would look in a real-world application.</div>
+                </div>
+                </div>
+            </div>
+        </div>
+        <div class="container d-grid gap-2 col-9 mx-auto">
+            <h2 class="text-center mt-4 text-danger">Still have questions?</h2>
+            <p class="leap text-center mt-3">Support details to capture customers that might be on the fence.</p>
+        </div>
+        <div class="text-center">
+            <button type="button" class="btn btn-outline-secondary mt-3">Contact us</button>
+        </div>
+      
+    </section>
+    <!-- Frequently asked questions END -->
+
+    <!-- Blog your Business -->
+    <section class="container no-padding mt-5">
+        <div class="row text-center">
+            <div class="col-12 px-5 col-lg-9 mx-auto">
+                <h1 class="text-center display-4 text-capitalize fw-bold mb-4 text-danger text-wrap">
+                    Discover how to manage your business on AFA
+                </h1>
+            </div>
+        </div>
+        <div class="row gy-4 py-5">
+            <div class="col-sm">
+                <div class="card h-100">
+                    <div class="ratio ratio-16x9">
+                        <iframe width="1424" height="652" src="https://www.youtube.com/embed/NAMvdbS4lk4" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    </div>
+                    <div class="card-body">
+                        <small class="mb-2 mt-1"><b>Category</b> &nbsp; &nbsp;&nbsp;&nbsp; 5 min read</small>
+                    <h5 class="card-title">Blog title heading will go here</h5>
+                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                    <a href="#" class="btn btn-light">Read more &nbsp;&nbsp; <i class="fa fa-angle-right" aria-hidden="true"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm">
+                <div class="card h-100">
+                    <img src="../NEW/assets/img/banner1.jpg" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <small class="mb-2 mt-1"><b>Category</b> &nbsp; &nbsp;&nbsp;&nbsp; 5 min read</small>
+                    <h5 class="card-title">Card title</h5>
+                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                    <a href="#" class="btn btn-light">Read more &nbsp;&nbsp; <i class="fa fa-angle-right" aria-hidden="true"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm">
+                <div class="card h-100">
+                    <img src="../NEW/assets/img/banner12.jpg" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <small class="mb-2 mt-1"><b>Category</b> &nbsp; &nbsp;&nbsp;&nbsp; 5 min read</small>
+                    <h5 class="card-title">Card title</h5>
+                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                    <a href="#" class="btn btn-light">Read more &nbsp;&nbsp; <i class="fa fa-angle-right" aria-hidden="true"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+      <div class="text-center">
+          <button type="button" class="btn btn-outline-secondary mt-3">View All</button>
+      </div>
+    </section>
+    <!-- Blog your Business END -->
+
+    <!-- News Letter Section -->
+    {% if not user.is_authenticated %}
+    <section class="bg-light text-dark p-5 mb-5">
+        <div class="container py-5">
+            <form action="{% url 'subscribe' %}" method="post">
+                {% csrf_token %}
+                <div class="row gy-3">
+                    <div class="col-12 col-lg-6">
+                        <div class="p-2 flex-grow-1 text-danger">
+                            <h3 class="mb-3">
+                                Join our newsletter
+                            </h3>
+                            <p class="leap">
+                                subscribe to our monthly newsletter
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-12 col-lg-4">
+                        <input name="email" type="email" class="form-control-lg w-100" placeholder="Enter your email">
+                        <p class="text-danger">By subscribing you agree to with our <a href="#">Privacy Policy</a></p>
+                    </div>
+
+                    <div class="col-12 col-lg-2">
+                        <button type="submit" class="btn btn-danger w-100 btn-lg">Subscribe</button></div>
+                    </div>
+                </div>
+        </form>
+        </div>
+    </section>
+    {% endif %}
+    <!-- News Letter Section END -->
+
+    <!-- Footer  -->
+    {% include 'include/footer.html' %}
+    <!-- Footer END -->
+
+  <script>
+    const navEl = document.querySelector('.navbar');
+    const nav_btn = document.querySelector('.nav-item')
+
+    window.addEventListener('scroll', () => {
+        if (window.scrollY >= 56) {
+            navEl.classList.add('navbar-scrolled');
+            nav_btn.classList.add('btn-new');
+        } else if (window.scrollY < 56) {
+            navEl.classList.remove('navbar-scrolled');
+            nav_btn.classList.remove('btn-new');
+        }
+    });
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+  </body>
+</html>
